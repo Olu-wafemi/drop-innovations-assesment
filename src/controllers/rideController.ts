@@ -78,14 +78,15 @@ export const completeRide = async(req: Request, res: Response)=>{
             res.status(404).json({message: "Ride not Found"});
             return  
         }
-        if(ride.driverId !== driverId){
-             res.status(403).json({message: "You are not authorized to complete this ride"})
-             return
-        }
+       
         if(ride.status !== RideStatus.ACCEPTED){
              res.status(400).json({message: "Ride is not in progress"})
              return
         }
+        if(ride.driverId !== driverId){
+            res.status(403).json({message: "You are not authorized to complete this ride"})
+            return
+       }
 
         const updatedRide = await prisma.ride.update({
             where: {id: rideId},
