@@ -19,6 +19,7 @@ export const matchRiderWithDriver = async(req:Request, res: Response)=>{
 
 
         })
+        
         if(!drivers.length){
              res.status(404).json({mesage: "No available drivers found"})
              return
@@ -34,13 +35,15 @@ export const matchRiderWithDriver = async(req:Request, res: Response)=>{
                 minDistance = distance;
                 nearestDriver = driver;
             }
-            if(!nearestDriver){
-                res.status(404).json({message: "No available drivers near you"})
-                return
-            }
-
-            res.status(200).json({message: "Driver Found", nearestDriver, distance: minDistance})
+           
+            
         })
+        if(!nearestDriver){
+            res.status(404).json({message: "No available drivers near you"})
+            return
+        }
+
+        res.status(200).json({message: "Driver Found", nearestDriver, distance: minDistance})
     }
     catch(error){
         res.status(500).json({message: "Error matching driver", error})

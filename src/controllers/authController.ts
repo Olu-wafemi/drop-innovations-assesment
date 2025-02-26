@@ -9,10 +9,6 @@ dotenv.config()
 
 export const registerUser = async (req: Request, res: Response)=>{
     const {name, email, password, role} = req.body
-    if(!["RIDER", "DRIVER"].includes(role)){
-         res.status(400).json({message: "Invalid role"})
-         return
-    }
     const hasheshedPassword = await bcrypt.hash(password, 10)
     try{
         const already_exists = await prisma.user.findUnique({where: {email}})
@@ -21,7 +17,10 @@ export const registerUser = async (req: Request, res: Response)=>{
             return
         }
         const user = await prisma.user.create({
-            data: {name, email, password: hasheshedPassword, role}
+            data: {name, email, password: hasheshedPassword, role, location:{
+                lat: 6.59471,
+                lng: 2.4
+            }}
         })
         res.status(201).json({message: "User successfully registered"})
     }
