@@ -1,8 +1,8 @@
 import express from "express"
 import cors from "cors"
 import helmet from "helmet"
-import routes from "./src/routes/index"
-import { connectDB } from "./src/config/database"
+import routes from "./routes/index"
+import { connectDB } from "./config/database"
 
 
 const app = express()
