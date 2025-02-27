@@ -15,7 +15,7 @@ export const matchRiderWithDriver = async(req:Request, res: Response)=>{
                 role: "DRIVER",
                 location: {not: Prisma.DbNull},
       },
-      select: {id: true,name: true, location: true, }
+      select: {id: true, location: true, }
 
 
         })
@@ -43,7 +43,7 @@ export const matchRiderWithDriver = async(req:Request, res: Response)=>{
             return
         }
 
-        res.status(200).json({message: "Driver Found", nearestDriver, distance: minDistance})
+        res.status(200).json({message: "Driver Found", driverId: nearestDriver.id, distance: minDistance})
     }
     catch(error){
         res.status(500).json({message: "Error matching driver", error})
