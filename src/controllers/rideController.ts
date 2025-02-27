@@ -122,7 +122,7 @@ export const getUserRides = async(req: Request, res: Response)=>{
 
         res.status(200).json({message: "Fetched Successfully", page, limit , rides})
     }
-    catch{
+    catch(error){
         res.status(500).json({message: "Error retrieving ride history", error})
     }
 } 
