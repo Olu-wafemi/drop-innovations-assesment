@@ -102,7 +102,7 @@ export const completeRide = async(req: Request, res: Response)=>{
 export const getUserRides = async(req: Request, res: Response)=>{
     const userId = req.params.id;
     const check_user = await prisma.user.findUnique({where: {id: userId}})
-    if(!userId){
+    if(!check_user){
         res.status(404).json({message: "User not Found"})
         return
     }

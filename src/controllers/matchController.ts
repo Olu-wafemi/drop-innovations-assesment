@@ -47,6 +47,5 @@ export const matchRiderWithDriver = async(req:Request, res: Response)=>{
     }
     catch(error){
         res.status(500).json({message: "Error matching driver", error})
-
     }
 }
