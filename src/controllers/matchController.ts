@@ -26,7 +26,7 @@ export const matchRiderWithDriver = async(req:Request, res: Response)=>{
         }
 
         let nearestDriver: any = null;
-        let minDistance = 1;
+        let minDistance = Infinity;
 
         drivers.forEach((driver)=>{
             const driverLocation = driver.location as {lat: number, lng: number};

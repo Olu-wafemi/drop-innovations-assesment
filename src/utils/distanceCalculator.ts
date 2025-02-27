@@ -1,4 +1,3 @@
-import { number } from "joi";
 
 export const calculateDistance = (
     lat1: number,
