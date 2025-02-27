@@ -17,10 +17,7 @@ export const registerUser = async (req: Request, res: Response)=>{
             return
         }
         const user = await prisma.user.create({
-            data: {name, email, password: hasheshedPassword, role, location:{
-                lat: 6.59471,
-                lng: 2.4
-            }}
+            data: {name, email, password: hasheshedPassword, role,}
         })
         res.status(201).json({message: "User successfully registered"})
     }
